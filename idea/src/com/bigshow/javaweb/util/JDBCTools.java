@@ -1,24 +1,21 @@
 package com.bigshow.javaweb.util;
 
+import com.bigshow.javaweb.test.DataSourceTest;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import javax.sql.DataSource;
 import java.sql.*;
 
 public class JDBCTools {
     private static Connection connection;
-    private static String url = "jdbc:mysql://localhost:3306/users?useUidcode=true&characterEncoding=UTF-8";
-    private static String user = "root";
-    private static String password = "123456";
+    private static DataSource dataSource;
 
     static{
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        dataSource = new ComboPooledDataSource("testc3p0");
     }
-
     public static Connection getConnection(){
         try {
-            connection = DriverManager.getConnection(url, user, password);
+            connection = dataSource.getConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
