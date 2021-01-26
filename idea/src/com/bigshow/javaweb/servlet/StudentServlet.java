@@ -54,7 +54,7 @@ public class StudentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("method");
-        System.out.println(req.getCharacterEncoding());
+//        System.out.println(req.getCharacterEncoding());
         switch (method){
             case "add":
                 String name = req.getParameter("name");
